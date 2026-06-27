@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: cad-detection-app
+    runtime: python
+    plan: free
+
+    buildCommand: |
+      python3.11 -m pip install -r requirements.txt
+
+    startCommand: |
+      streamlit run App.py --server.port=$PORT --server.address=0.0.0.0
+
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
