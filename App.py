@@ -6,7 +6,7 @@ from PIL import Image
 # Load trained model
 model = tf.keras.models.load_model("custom_cnn.keras")
 
-st.title("Coronary Artery Disease Detection")
+st.title("Coronary Artery Disease Identification")
 
 uploaded_file = st.file_uploader(
     "Upload CT Scan Image",
@@ -26,8 +26,13 @@ if uploaded_file is not None:
     if st.button("Predict"):
 
         prediction = model.predict(img)
+        
 
         if prediction[0][0] > 0.5:
             st.success("Prediction: Normal")
+            st.write("• Maintain a healthy lifestyle.")
+            
+            
         else:
             st.error("Prediction: Abnormal")
+            st.write("• Please consult a Cardiologist.")
